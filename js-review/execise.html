@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <script>
+    // 实现"Hello world"输出。
+    alert("hello world");
+    console.log("hello world");
+  </script> -->
+  <!-- <script>
+    // ⼀球从100⽶⾼度⾃由落下，每次落地后反跳回原⾼度的⼀半；再落下，输⼊⼀个数"n"，
+    // 求它在第n次落地时，共经过多少⽶？第n次反弹多⾼？
+    var num = prompt("输入落地的次数", 0);
+    var height = 100;
+    var total = 0;
+    for (let i = 0; i < num; i++) {
+      total += height;
+      height /= 2;
+      total += height;
+      // total += height + height / 2;
+      // height /= 2;
+    }
+    alert("共经过" + total + "米, 第" + num + "次反弹的高度为" + height);
+  </script> -->
+  <!-- <script>
+    // 输⼊⼀个⽇期判断是周⼏
+    var date = new Date();
+    var dateStr = prompt("输入日期", date.toLocaleDateString());
+    var weekday=["周日","周一","周二","周三","周四","周五","周六"];
+    date = new Date(dateStr);
+    alert(dateStr + "是" + weekday[date.getDay()]);
+  </script> -->
+  <!-- <script>
+    // 输⼊三个数分别代表年、⽉、⽇，判断这三个数代表的这⼀天是这⼀年中的第⼏周、第⼏天？
+    var year = parseInt(prompt("输入年份", new Date().getUTCFullYear()));
+    var month = parseInt(prompt("输入月份", new Date().getMonth() + 1));
+    var day = parseInt(prompt("输入天", new Date().getDate()));
+
+    var days = getDays(year, month, day);
+    var week = getWeekNumber(year, month, day);
+    alert(year + "年" + month + "月" + day + "日是这一年的第" + days + "天，第" + week + "周");
+
+    function getDays(y, m, d) {
+      var days = d;
+      var date = new Date(y, m - 1, d);
+      for (let i = 1; i < m; i++) {
+        days += getMonthDays(y, i);
+      }
+      return days;
+    }
+
+    function getWeekNumber(y, m, d) {
+      var days = getDays(y, m, d);
+      days += new Date(y, 0, 1).getDay();
+      var week = Math.ceil(days / 7);
+      return week;
+    }
+    // 判断闰年
+    function isLeapYear(year) {
+      return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
+    }
+
+    // 获取某月的天数
+    function getMonthDays(year, month) {
+      return [31, (isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1];
+    }
+  </script> -->
+  <script>
+    // 判断⼀个5位数是不是回⽂数。
+    var num = prompt("输入一个5位数");
+    if (num.length < 0) {
+      alert("长度小于5位")
+    } else {
+      alert(isHuiWen(num) ? "是回文" : "不是回文");
+    }
+
+    function isHuiWen(num) {
+      num = num.replace(/\W\s_/gi, '');
+      return num == num.split('').reverse().join('');
+    }
+  </script>
+
+  3. 输⼊⼀个⽇期判断是周⼏？
+  4. 输⼊三个数分别代表年、⽉、⽇，判断这三个数代表的这⼀天是这⼀年中的第⼏周、第⼏天？
+  
+  6、对10个数进⾏排序：15,2,34,67,35,11,1,87,37,34。
+  7、求200到400间，能被３整除但不能被７整除的数的个数。
+  万元的部分，可提成1.5%，⾼于100万元时，超过100万元
+  的部分按1%提成，`
+  12、打印输出9*9乘法表。
+  13、打印输出图案（菱形）
+  ~~~~
+  *
+  ***
+  *****
+  *******
+  *****
+  ***
+  *
+  ~~~~
+  14、有1、2、3、4个数字，能组成多少个互不相同且⽆重复数字的三位数？都是多少？
+  15、打印出杨辉三⻆形（要求打印出10⾏如下图）
+  ~~~~
+  1
+  　　　　 1 1
+  　　　　 1 2 1
+  　　　　 1 3 3 1
+  　　　　 1 4 6 4 1
+  　　　 1 5 10 10 5 1
+</body>
+
+</html>

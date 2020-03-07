@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对象的案例</title>
+</head>
+<body>
+  <script>
+    // 自定义对象
+    // 1. 对象字面值
+    // var person = {
+    //   name: 'niit',
+    //   age:18,
+    //   sex: true,
+    //   sayHi: function() {
+    //     console.log(this.name);
+    //   }
+    // }
+    // console.log(person);
+    // 2. new Object()
+    // var person = new Object();
+    // person.name = "lisi";
+    // person.age = 35
+    // person.job = 'actor'
+    // person.sayHi = function() {
+    //   console.log('hello, everybody')
+    // }
+    // console.log(person)
+    // 3. 工厂函数
+    // function createPerson(name, age, job) {
+    //   var person = new Object();
+    //   person.name = name;
+    //   person.age = age
+    //   person.job = job
+    //   person.sayHi = function() {
+    //   console.log('hello, everybody')
+    //   }
+    //   return person;
+    // }
+    // console.log(createPerson('张三', 22, 'student'));
+    // 4. 自定义构造函数
+    function Person(name, age, job) {
+      this.name = name;
+      this.age = age
+      this.job = job
+      this.sayHi = function() {
+      console.log('hello, everybody')
+      }
+    }
+    // 使用对象
+    var person = new Person("张勇", 22, "学生");
+    console.log(person);
+
+    // 遍历对象属性
+    for (var key in person) {
+      console.log(key + " = " + person[key]);
+    }
+    // 获取对象的属性
+    console.log(person.name);
+    // 删除对象的属性
+    delete person.sex
+    console.log(person.sex); // undefined
+  </script>
+</body>
+</html>
