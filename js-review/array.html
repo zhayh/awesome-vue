@@ -9,19 +9,55 @@
 
 <body>
   <script>
-    // 定义
-    var arr = ["red", "green", "blue"]
-    // 获取
-    console.log(arr[0]);
-    // 遍历
-    arr.forEach(el => {
-      // 数组遍历
-      console.log(el);
-    });
-    // 替换
-    arr[0] = "yellow";
-    // 新增
-    arr[3] = "pink";
+    // // 定义
+    // var arr = ["red", "green", "blue"]
+    // // 获取
+    // console.log(arr[0]);
+    // // 遍历
+    // arr.forEach(el => {
+    //   // 数组遍历
+    //   console.log(el);
+    // });
+    // // 替换
+    // arr[0] = "yellow";
+    // // 新增
+    // arr[5] = "pink";
+    // console.log(arr);
+  </script>
+
+
+  <script>
+    // 求数组的最大值与最小值
+    var arr = [10, 20, 4, 130, 22, 78, 90, 32];
+
+    // 假设法
+    function getMinAndMax(arr) {
+      var min = arr[0];
+      var max = arr[0];
+      for (var i = 1; i < arr.length; i++) {
+        arr[i] > max ? max = arr[i] : max;
+        arr[i] < min ? min = arr[i] : min;
+      }
+      console.log("最小值: ", min);
+      console.log("最大值: ", max);
+    }
+    getMinAndMax(arr);
+
+    // 排序法
+    // arr.sort(function(a, b) {
+    //   return a - b;
+    // })
+    // console.log("arr: ", arr);
+    // console.log("最小值：", arr.shift());
+    // console.log("最大值：", arr.pop());
+
+    // Math的max和min方法
+    console.log("最小值: ", Math.min.apply(null, arr));
+    console.log("最大值: ", Math.max.apply(null, arr));
+
+    // ES6
+    console.log("最小值: ", Math.min(...arr));
+    console.log("最大值: ", Math.max(...arr));
   </script>
 </body>
 

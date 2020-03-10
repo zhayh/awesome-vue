@@ -29,6 +29,20 @@
     alert("共经过" + total + "米, 第" + num + "次反弹的高度为" + height);
   </script> -->
   <!-- <script>
+    // 判断⼀个5位数是不是回⽂数。
+    var num = prompt("输入一个5位数");
+    if (num.length < 0) {
+      alert("长度小于5位")
+    } else {
+      alert(isHuiWen(num) ? "是回文" : "不是回文");
+    }
+
+    function isHuiWen(num) {
+      num = num.replace(/\W\s_/gi, '');
+      return num === num.split('').reverse().join('');
+    }
+  </script> -->
+  <!-- <script>
     // 输⼊⼀个⽇期判断是周⼏
     var date = new Date();
     var dateStr = prompt("输入日期", date.toLocaleDateString());
@@ -71,48 +85,20 @@
       return [31, (isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1];
     }
   </script> -->
-  <script>
-    // 判断⼀个5位数是不是回⽂数。
-    var num = prompt("输入一个5位数");
-    if (num.length < 0) {
-      alert("长度小于5位")
-    } else {
-      alert(isHuiWen(num) ? "是回文" : "不是回文");
+  <!-- <script>
+    // 输入一串以逗号隔开的4种好吃的美食，每隔3秒钟打印每种美食的内容
+    let food = "糖醋排骨,酸菜鱼,香煎三文鱼,大龙虾";
+    let foods = food.split(",");
+    var i = 0;
+    var t = setInterval('show()', 2000);
+    function show() {
+      console.log(foods[i++]);
+      //如果超过数组长度，清除定时器
+      if (i >= foods.length) {
+        clearInterval(t)
+      }
     }
-
-    function isHuiWen(num) {
-      num = num.replace(/\W\s_/gi, '');
-      return num == num.split('').reverse().join('');
-    }
-  </script>
-
-  3. 输⼊⼀个⽇期判断是周⼏？
-  4. 输⼊三个数分别代表年、⽉、⽇，判断这三个数代表的这⼀天是这⼀年中的第⼏周、第⼏天？
-  
-  6、对10个数进⾏排序：15,2,34,67,35,11,1,87,37,34。
-  7、求200到400间，能被３整除但不能被７整除的数的个数。
-  万元的部分，可提成1.5%，⾼于100万元时，超过100万元
-  的部分按1%提成，`
-  12、打印输出9*9乘法表。
-  13、打印输出图案（菱形）
-  ~~~~
-  *
-  ***
-  *****
-  *******
-  *****
-  ***
-  *
-  ~~~~
-  14、有1、2、3、4个数字，能组成多少个互不相同且⽆重复数字的三位数？都是多少？
-  15、打印出杨辉三⻆形（要求打印出10⾏如下图）
-  ~~~~
-  1
-  　　　　 1 1
-  　　　　 1 2 1
-  　　　　 1 3 3 1
-  　　　　 1 4 6 4 1
-  　　　 1 5 10 10 5 1
+  </script> -->
 </body>
 
 </html>
