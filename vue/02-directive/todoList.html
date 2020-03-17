@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ToDoList-MVVM模式</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="inputValue"/>
+    <button v-on:click="handleBtnClick">提交</button>
+    <ul>
+      <li v-for="item in list">{{item}}</li>
+    </ul> 
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        list: [],
+        inputValue: ''
+      },
+      methods: {
+        handleBtnClick: function() {
+          // alert(this.inputValue)
+          this.list.push(this.inputValue)
+          this.inputValue = ''
+        }
+      }
+    })
+</script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>v-for示例</title>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <ul>
+        <li v-for="(item, index) in arr">
+          {{index+1}}. 上课时间：{{item}}
+        </li>
+      </ul>
+    </div>
+    <div>
+      <input type="button" value="添加水果" @click="add">
+      <input type="button" value="移除水果" @click="remove">
+      <h2 v-for="(item, index) in fruits" :key='item.id'>
+        {{item.name}} -- {{index}}
+      </h2>
+    </div>
+    <div>
+      <button @click="addAttribute">添加属性</button>
+      <div v-for="(item, key, index) of userInfo" >
+        {{item}} -- {{key}} -- {{index}}
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    // 数组不能用下标进行修改
+    // 数组元素的更新方法：push、pop、shift、unshift、splice、sort、reverse
+    // 改变数组的引用也能更新
+    var app = new Vue({
+      el: '#app',
+      data: {
+        arr: ['周一', '周二', '周三', '周四'],
+        fruits: [
+          {
+            id: 1001,
+            name: '苹果'
+          }, {
+            id: 1002,
+            name: '香蕉'
+          }, {
+            id: 1003,
+            name: '梨子'
+          }
+        ],
+        userInfo: {
+          name: "niit",
+          age: 20,
+          gender: "male",
+          salary: "secret"
+        }
+      },
+      methods: {
+        add: function () {
+          this.fruits.push({
+            id: 1004,
+            name: '草莓'
+          });
+        },
+        remove: function () {
+          this.fruits.shift();
+        },
+        addAttribute: function () {
+          Vue.set(this.userInfo, "address", "nanjing"); // 类方法
+          // app.$set(this.userInfo, "address", "nanjing");  // 实例方法
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

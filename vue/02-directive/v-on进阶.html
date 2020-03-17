@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>v-on进阶</title>
+</head>
+
+<body>
+  <div id="app">
+    <!--事件方法传入自定义参数-->
+    <input type="button" value="doIt" @click="doIt(666,'niit', $event)">
+
+    <!--事件修饰符-->
+    <input type="text" @keyup.enter="say">
+
+    <!-- 阻止冒泡 -->
+    <p>{{count}}</p>
+    <div @click="add0">
+      <button @click.stop="add1">加1</button>
+    </div>
+
+    <!-- 阻止默认行为-->
+    <div>
+      <a href="http://www.baidu.com" @click.prevent="link">百度</a>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: '计软院',
+        count: 0
+      },
+      methods: {
+        doIt: function (a1, a2, event) {
+          console.log('doIt');
+          console.log(a1, a2);
+          console.log(event.target.tagName);
+          console.log(event.target.innerHTML);
+        },
+        say: function () {
+          console.log(this.name, "say");
+        },
+        add0: function (event) {
+          this.count++;
+          
+        },
+        add1: function (event) {
+          // 传统方法阻止冒泡
+          // event.stopPropagation();
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

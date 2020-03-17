@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>Vue.directive自定义指令</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-focus="true">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.directive('focus', {
+      inserted: function(el, binding) {
+        console.log('2 - inserted');
+        if (binding.value) {
+          el.focus();
+        }
+      },
+      bind: function () { //被绑定
+        console.log('1 - bind');
+      },
+      update: function () { //组件更新
+        console.log('3 - update');
+      },
+      componentUpdated: function () { //组件更新完成
+        console.log('4 - componentUpdated');
+      },
+      unbind: function () { //解绑
+        console.log('5 - bind');
+      }
+    })
+    const vm = new Vue({
+      el: '#app',
+
+    })
+  </script>
+</body>
+
+</html>

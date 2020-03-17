@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>v-model示例</title>
+</head>
+<body>
+  <div id="app">
+    <input type="button" value="修改" @click="setMessage">
+    <input type="text" v-model="message" @keyup.enter="getMessage">
+    <h2>{{message}}</h2>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: '双向数据绑定'
+      },
+      methods: {
+        getMessage: function() {
+          alert(this.message);
+        },
+        setMessage: function() {
+          this.message = '移动应用开发技术'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

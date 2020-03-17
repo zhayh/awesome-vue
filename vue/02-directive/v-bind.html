@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>v-bind示例</title>
+  <style>
+    .active {
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <!--2. html结构-->
+  <div id="app">
+    <!-- 完整语法 -->
+    <img v-bind:src="img_src" alt=""><br>
+    <!-- 简写 -->
+    <img :src="img_src" alt="" :title="img_title + '!'" :class="isActive ? 'active':''" @click="toggle"><br>
+    <img :src="img_src" alt="" :title="img_title + '!'" :class="{active:isActive}" @click="toggle">
+  </div>
+  <!-- 1. 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    // 3. 创建vue实例
+    var app = new Vue({
+      el: '#app',
+      data: {
+        img_src: './img/vue.png',
+        img_title: 'vue学习',
+        isActive: false
+      },
+      methods: {
+        toggle: function () {
+          this.isActive = !this.isActive
+        }
+      }
+    })
+  </script>
+</body>
+</html>

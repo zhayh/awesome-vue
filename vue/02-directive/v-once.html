@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>v-once指令</title>
+</head>
+
+<body>
+  <div id="app">
+    <span v-once>{{msg}}</span>
+    <div v-once>
+      <span>{{msg}}</span>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'Hello Vue'
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>v-on示例</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 完整语法 -->
+    <input type="button" value="v-on指令" v-on:click="doIt">
+    <input type="button" value="mouseover" v-on:mouseover="mouseover">
+    <!-- 简写 -->
+    <input type="button" value="v-on简写" @click="doIt">
+    <input type="button" value="dblclick" @dblclick="doIt">
+
+    <h2 @click="change">{{name}}</h2>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: '计软院'
+      },
+      methods: {
+        doIt: function () {
+          alert('doIt');
+        },
+        change: function () {
+          console.log(this.name);
+          this.name += '学编程'
+        },
+        mouseover: function () {
+          this.name = 'mouseover';
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

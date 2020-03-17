@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="./css/form.css">
+  <title>v-model表单综合案例</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <form action="" method="post" class="info-form">
+      <div class="form-header">
+        <h1>个人信息</h1>
+      </div>
+      <div class="form-body">
+        <div class="horizontal-group">
+          <!-- 文本框 -->
+          <div class="form-group">
+            <label for="username" class="label-title">用户名：</label>
+            <input type="text" class="form-input" id="username" v-model.trim="username" placeholder="用户名"
+              required="required">
+          </div>
+          <div class="form-group">
+            <label for="email" class="label-title">邮箱：</label>
+            <input type="email" class="form-input" id="email" v-model.trim="email" placeholder="有效的邮箱地址">
+          </div>
+          <!--  单选框 -->
+          <div class="form-group">
+            <label class="label-title">性别：</label>
+            <div class="input-group">
+              <label><input type="radio" v-model="sex" value="男" id="male">男   </label>
+              <label><input type="radio" v-model="sex" value="女" id="female">女</label>
+            </div>
+          </div>
+          <!-- 复选框 -->
+          <div class="form-group">
+            <label class="label-title">爱好：</label>
+            <div class="input-group">
+              <label> <input type="checkbox" v-model="hobbys" value="音乐">音乐 </label>
+              <label> <input type="checkbox" v-model="hobbys" value="运动">运动 </label>
+              <label> <input type="checkbox" v-model="hobbys" value="旅行">旅行 </label>
+              <label> <input type="checkbox" v-model="hobbys" value="电影">电影 </label>
+            </div>
+          </div>
+          <!-- 下拉框 -->
+          <div class="form-group">
+            <label class="label-title">入学年份：</label>
+            <select class="form-input" v-model="enrollmentYear">
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- 提交按钮 -->
+      <div class="form-footer">
+        <button type="submit" class="btn" @click="submit">提交</button>
+      </div>
+    </form>
+    <!-- 选中的 -->
+    <!-- <div class="form-body">
+      <label>
+        <p>昵称：{{ username }}</p>
+        <p>邮箱：{{ email }}</p>
+        <p>性别：{{ sex }}</p>
+        <p>爱好：{{ hobbys }}</p>
+        <p>入学年份：{{ enrollmentYear }}</p>
+      </label>
+    </div> -->
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        username: '',
+        email: '',
+        sex: '男',
+        hobbys: ['音乐'],
+        enrollmentYear: 2018
+      },
+      methods: {
+        submit: function () { //模拟提交
+          let data = new Object();
+          data.username = this.username;
+          data.email = this.email;
+          data.sex = this.sex;
+          data.hobbys = this.hobbys;
+          data.enrollmentYear = this.enrollmentYear;
+          alert("数据: " + JSON.stringify(data));
+        }
+      }
+    })
+  </script>
+
+</html>

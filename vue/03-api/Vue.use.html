@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>Vue.use案例</title>
+</head>
+
+<body>
+  <div id="app">
+    <div v-my-directive></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    // 定义一个MyPlugin（自定义插件）对象
+    let MyPlugin = {}
+    // 编写插件对象的install方法
+    MyPlugin.install = function (Vue, options) {
+      console.log(options);
+      // 在插件中为Vue添加自定义指令
+      Vue.directive("my-directive", {
+        bind(el, binding) {
+          // 为自定义指令v-my-directive绑定的DOM元素设置style样式
+          el.style = 'width:100px;height:100px;background-color:#ccc;'
+        }
+      })
+    }
+    Vue.use(MyPlugin, {
+      some: true
+    });
+    const vm = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+
+</html>

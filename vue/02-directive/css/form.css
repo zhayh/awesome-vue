@@ -1,0 +1,126 @@
+body {
+  background: linear-gradient(to right, #78a7ba 0%, #385D6C 50%, #78a7ba 99%);
+}
+
+.info-form {
+  width: 650px;
+  margin: 30px auto;
+  border-radius: 10px;
+  background: linear-gradient(to right, #ffffff 0%, #fafafa 50%, #ffffff 99%);
+}
+
+/*---------------------------------------*/
+/* Form header */
+/*---------------------------------------*/
+
+.form-header {
+  background-color: #EFF0F1;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.form-header h1 {
+  font-size: 30px;
+  text-align: center;
+  color: #666;
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+/*---------------------------------------*/
+/* Form Body */
+/*---------------------------------------*/
+.form-body {
+  padding: 10px 40px;
+  color: #666;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-body .label-title {
+  float: left;
+  color: #1BBA93;
+  font-size: 17px;
+  font-weight: bold;
+  padding-right: 10px;
+  width: 20%;
+  text-align: right;
+}
+
+.form-body .form-input {
+  font-size: 17px;
+  box-sizing: border-box;
+  width: 70%;
+  height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #333333;
+  text-align: left;
+  border: 1px solid #d6d6d6;
+  border-radius: 4px;
+  background: white;
+  outline: none;
+}
+
+.horizontal-group {
+  margin: 0 auto;
+}
+
+.form-body .input-group {
+  width: 70%;
+  height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+input[type="file"] {
+  outline: none;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+#range-label {
+  width: 15%;
+  padding: 5px;
+  background-color: #1BBA93;
+  color: white;
+  border-radius: 5px;
+  font-size: 17px;
+  position: relative;
+  top: -8px;
+}
+
+::-webkit-input-placeholder {
+  color: #d9d9d9;
+}
+
+/*---------------------------------------*/
+/* Form Footer */
+/*---------------------------------------*/
+.info-form .form-footer {
+  background-color: #EFF0F1;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px 40px;
+  text-align: right;
+  border-top: 1px solid #cccccc;
+  clear: both;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1BBA93;
+  font-size: 17px;
+  border: none;
+  border-radius: 5px;
+  color: #bcf5e7;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #169c7b;
+  color: white;
+}

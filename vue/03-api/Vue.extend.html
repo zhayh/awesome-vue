@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vue.extend-扩展实例构造器</title>
+</head>
+<body>
+  <h1>Vue.extend-扩展实例构造器</h1>
+  <hr>
+  <school></school>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let schoolExtend = Vue.extend({
+      template: "<p><a :href='schoolUrl'>{{schoolName}}</a></p>",
+      data: function(){
+        return { 
+          schoolName: "niit",
+          schoolUrl: "http://www.niit.edu.cn"
+        }
+      }
+    });
+    // 创建schoolExtend实例，并挂载到school标签上
+    new schoolExtend().$mount('school')
+  </script>
+</body>
+</html>

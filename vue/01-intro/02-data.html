@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>data数据对象</title>
+</head>
+
+<body>
+  <div id="app">
+    {{ message }}
+    <h2> {{ student.name }} -- {{ student.mobile }} </h2>
+    <ul>
+      <li>{{classmate[0]}}</li>
+      <li>{{classmate[1]}}</li>
+    </ul>
+  </div>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue',
+        classmate: ['软件_1851', '移动_1851'],
+        student: {
+          name: '张三',
+          mobile: '188-618-8080'
+        },
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ToDoList-MVP模式</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" id="input"/>
+    <button id="btn">提交</button>
+    <ul id="ul">
+    </ul> 
+  </div>
+</body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+    function Page() {
+
+    };
+    $.extend(Page.prototype, {
+      init: function() {
+        this.bindEvents();
+      },
+      bindEvents: function() {
+        var btn = $('#btn');
+        btn.on('click', $.proxy(this.handleBtnClick, this));
+      },
+      handleBtnClick: function() {
+        var inputElement = $('#input');
+        var inputValue = inputElement.val();
+        var ulElement = $('#ul')
+        ulElement.append('<li>' + inputValue + '</li>');
+        inputElement.val('');
+      }
+    })
+    var page = new Page();
+    page.init();
+</script>
+</html>

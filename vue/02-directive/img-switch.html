@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>图片切换</title>
+  <link rel="stylesheet" href="./css/img.css">
+</head>
+<body>
+  <!--2. html结构-->
+  <div id="app">
+    <div class="center">
+      <!--图片-->
+      <img :src="imgs[index]" alt=""> 
+      <!--左箭头-->
+      <a href="JavaScript:void(0)" class="left" @click="prev" v-show="index!=0">
+        <img src="./img/prev.png" alt="" >
+      </a>
+      <!--右箭头-->
+      <a href="JavaScript:void(0)" class="right" @click="next" v-show="index<imgs.length - 1">
+        <img src="./img/next.png" alt="" >
+      </a>
+    </div>
+  </div>
+  <!-- 1. 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    // 3. 创建vue实例
+    var app = new Vue({
+      el: '#app',
+      data: {
+        imgs: [
+          // './img/00.jpg',
+          // './img/01.jpg',
+          // './img/02.jpg',
+          // './img/03.jpg',
+          // './img/04.jpg',
+          // './img/05.jpg',
+          // './img/06.jpg',
+          // './img/07.jpg',
+          // './img/08.jpg',
+          // './img/09.jpg',
+          // './img/10.jpg',
+          './img/image1.jpg',
+          './img/image2.png',
+          './img/image3.jpg',
+          './img/image4.jpg',
+        ],
+        index: 0
+      },
+      methods: {
+        prev: function() {
+          this.index--;
+        },
+        next: function() {
+          this.index++;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

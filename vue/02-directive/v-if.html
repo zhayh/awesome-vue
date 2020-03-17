@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>v-if示例</title>
+</head>
+<body>
+  <!--2. html结构-->
+  <div id="app">
+    <input type="button" value="切换显示" @click="toggle">
+    <p v-if="isShow">Vue学习</p>
+    <p v-else>请点击按钮切换</p>
+    <p v-show="isShow">Vue学习 - v-show修饰</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    // 3. 创建vue实例
+    var app = new Vue({
+      el: '#app',
+      data: {
+        isShow: false,
+
+      },
+      methods: {
+        toggle: function() {
+          this.isShow = !this.isShow;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

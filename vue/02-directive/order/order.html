@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>综合案例-订单管理</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">订单管理</h3>
+      </div>
+      <div class="panel-body">
+
+        <label for="brand" class="col-sm-3">
+          品牌：<input type="text" id="brand">
+        </label>
+        <button type="button" class="btn btn-primary">查询</button>
+      </div>
+    </div>
+
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <tr>
+          <th>品牌</th>
+          <th>订单日期</th>
+          <th>订单价格</th>
+          <th>购买数量</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>路由器</td>
+          <td>2020-3-15</td>
+          <td>450</td>
+          <td><button>+</button> 1 <button>-</button></td>
+          <td><button>删除</button></td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+
+      }
+    })
+  </script>
+</body>
+
+</html>
