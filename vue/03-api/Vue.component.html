@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>Vue.directive自定义指令</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{title}}</p>
+    <my-component></my-component>
+  </div>
+  <template id="tmp1">
+    <p>{{title}}</p>
+  </template>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.component('my-component', {
+      template: '#tmp1',
+      data() {
+        return {
+          title: '我是组件内的title',
+        }
+      }
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        title: '我是vm实例的title'
+      }
+    })
+  </script>
+</body>
+
+</html>

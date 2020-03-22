@@ -7,16 +7,27 @@
   <meta name="viewport"  content="width=device-width,initial-scale=1">
   <title>计算属性和侦听器</title>
 </head>
+<!--
+1. 计算属性
+  在computed属性对象中定义计算属性的方法
+  在页面中使用{{方法名}}来显示计算的结果
+2. 监视属性:
+  通过通过vm对象的$watch()或watch配置来监视指定的属性
+  当属性变化时, 回调函数自动调用, 在函数内部进行计算
+3. 计算属性高级:
+  通过getter/setter实现对属性数据的显示和监视
+  计算属性存在缓存, 多次读取只执行一次getter计算
+-->
 
 <body>
   <div id="app">
     姓: <input type="text" v-model="firstName"><br>
     名: <input type="text" v-model="lastName"><br>
-    <!-- {{firstName + " " + lastName}} -->
-    姓名1(单向): <input type="text" placeholder="full name" v-model="fullName1"><br>
-    姓名2(单向): <input type="text" placeholder="full name"><br>
-    姓名3(双向): <input type="text" placeholder="full name"><br>
-    姓名4(侦听): <input type="text" placeholder="full name"><br>
+    <!--fullName1是根据fistName和lastName计算产生-->
+    姓名1(单向): <input type="text" placeholder="full name" v-model.lazy.trim="fullName1"><br>
+    姓名2(单向): <input type="text" placeholder="full name" v-model.lazy.trim="fullName2"><br>
+    姓名3(双向): <input type="text" placeholder="full name" v-model.lazy.trim="fullName3"><br>
+    姓名4(侦听): <input type="text" placeholder="full name" v-model.lazy.trim="fullName4"><br>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
@@ -26,6 +37,7 @@
         firstName: "张",
         lastName: "晓燕",
         fullName1: "张 晓燕", // 信息冗余
+        fullName4: '张 晓燕'
       },
       // 计算属性配置: 值为对象，会缓存
       computed: {
@@ -41,32 +53,23 @@
           },
           set: function (value) {
             console.log(value);
-            var arr = value.split(" ");
+            let arr = value.split(" ");
             this.firstName = arr[0];
             this.lastName = arr[1];
           }
         }
       },
-      // 使用方法，每次都会渲染，不会缓存
-      methods: {
-        fullName2: function () {
-          console.log("计算1次");
-          return this.firstName + " " + this.lastName
-        }
-      },
-      // 侦听器，需要对每个相关依赖进行侦听，代码重复
       watch: {
-        firstName: function (value) {
-          this.fullName4 = value + " " + this.lastName
+        firstName: function (newVal, oldVal) { // 这两个参数可以省略
+          this.fullName4 = this.firstName + " " + this.lastName
+        },
+        lastName: function (newVal, oldVal) { // 这两个参数可以省略
+          this.fullName4 = this.firstName + " " + this.lastName
         },
       },
     })
     // 监视lastName
-    vm.$watch('lastName', function (value) {
-      console.log('$watch lastName', value)
-      // 更新fullName4
-      this.fullName4 = this.firstName + '-' + value
-    })
+    // b
   </script>
 </body>
 
