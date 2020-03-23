@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>具名插槽</title>
+</head>
+
+<body>
+  <div id="app">
+    <base-layout>
+      <p slot='header'>标题内容</p>
+      <p>主要内容1</p>
+      <p>主要内容2</p>
+      <p slot='footer'>底部信息</p>
+    </base-layout>
+
+    <!-- 作用域插槽使用 -->
+    <base-layout>
+      <template slot='header'>
+        <p>标题内容1</p>
+        <p>标题内容2</p>
+      </template>
+      <p>主要内容1</p>
+      <p>主要内容2</p>
+      <template slot='footer'>
+        <p>底部信息1</p>
+        <p>底部信息2</p>
+      </template>
+    </base-layout>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    /**
+     * 组件插槽
+     */
+    Vue.component('base-layout', {
+      template: `
+        <div class="container">
+          <header>
+            <slot name="header"></slot>
+          </header>
+          <main>
+            <slot></slot>
+          </main>
+          <footer>
+            <slot name="footer"></slot>
+          </footer>
+        </div>
+      `
+    })
+    let vm = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+
+</html>

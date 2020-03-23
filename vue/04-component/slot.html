@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>插槽的基本用法</title>
+</head>
+
+<body>
+  <div id="app">
+    <alert-box>有bug发生</alert-box>
+    <alert-box>有一个警告</alert-box>
+    <alert-box></alert-box>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    /**
+     * 组件插槽
+     */
+    Vue.component('alert-box', {
+      template: `
+        <div>
+          <strong>Error: </strong>
+          <slot>默认内容</slot>
+        </div>
+      `
+    })
+
+    let vm = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+
+</html>

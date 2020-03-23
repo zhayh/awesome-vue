@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>组件注册</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 3.使用组件 -->
+    <my-component></my-component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    // 1. 定义组件
+    const MyComponent = Vue.extend({
+      data() {
+        return {
+          count: 0
+        }
+      },
+      template: `<div>
+          <h3>点击了{{count}}次</h3>
+          <button @click="count++">点击</button>
+        </div>`
+    })
+    // 2. 全局注册
+    Vue.component('my-component', MyComponent)
+    let vm = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+
+</html>

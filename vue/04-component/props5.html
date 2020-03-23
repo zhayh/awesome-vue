@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>组件间传值</title>
+</head>
+
+<body>
+  <div id="app">
+    <child :width="12" :content="aaa"></child>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.component('child', {
+      props: {
+        width: [String, Number],
+        content: {
+          type: String,
+          required: true,
+          // default: '初始值',
+          // 自定义校验器
+          validate: function (value) {
+            return value.length > 6
+          }
+        }
+      },
+      template: `
+        <div>
+          <div>{{width}}</div>
+          <div>{{content}}</div>
+        </div>
+      `
+    })
+    let vm = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+
+</html>
