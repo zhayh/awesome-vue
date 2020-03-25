@@ -10,7 +10,7 @@
 
 <body>
   <div id="app">
-    <child :width="12" :content="aaa"></child>
+    <child :width="12"></child>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
@@ -19,10 +19,10 @@
         width: [String, Number],
         content: {
           type: String,
-          required: true,
-          // default: '初始值',
+          // required: true,
+          default: '初始值',
           // 自定义校验器
-          validate: function (value) {
+          validator: function (value) {
             return value.length > 6
           }
         }

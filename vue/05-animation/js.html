@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>Vue的js动画</title>
+</head>
+
+<body>
+  <div id="app">
+    <!--入场动画-->
+    <transition name="fade" 
+      @before-enter="handleBeforeEnter" 
+      @enter="handleEnter" 
+      @after-enter="handleAfterEnter">
+      <div v-show="show">Hello World</div>
+    </transition>
+    <!--出场动画-->
+    <!-- <transition
+      name="fade"
+      @before-leave="handleBeforeEnter"
+      @leave="handleEnter"
+      @after-leave="handleAfterEnter">
+      <div v-show="show">Hello World</div> -->
+    </transition>
+    <button @click="handleClick">切换</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        show: true
+      },
+      methods: {
+        handleClick: function () {
+          this.show = !this.show
+        },
+        handleBeforeEnter: function (el) {
+          console.log("动画开始");
+          el.style.color = 'red';
+        },
+        handleEnter: function (el, done) {
+          console.log("处理动画");
+          setTimeout(() => {
+            el.style.color = 'green'
+          }, 2000);
+          setTimeout(() => {
+            done()
+          }, 4000);
+        },
+        handleAfterEnter: function (el) {
+          console.log("动画结束");
+          el.style.color = 'black'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vue中多个元素或组件的过渡</title>
+  <style>
+    .v-enter, v-leave-to {
+      opacity: 0;
+    }
+    .v-enter-active, .v-leave-active {
+      transition: opacity 1s;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <transition mode="in-out">
+      <!--使用key值禁止Vue复用-->
+      <!-- <div v-if="show" key="hello">Hello World</div>
+      <div v-else key="bye">Bye World</div> -->
+      <!--使用动态组件的动态切换-->
+      <component :is="type"></component>
+    </transition>
+    <button @click="handleClick">切换</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.component('child-one', {
+      template: '<div>child-one</div>'
+    })
+    Vue.component('child-two', {
+      template: '<div>child-two</div>'
+    })
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        show: true,
+        type: "child-one"
+      },
+      methods: {
+        handleClick: function() {
+          this.show = !this.show;
+          this.type = this.type === 'child-one' ? 'child-two' : 'child-one'
+        }
+      }
+    })
+  </script>
+</body>
+</html>
