@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>vm.$attrs</title>
+</head>
+
+<body>
+  <div id="app">
+    <my-component id="test"></my-component>
+  </div>
+
+  <template id="first">
+    <div>
+      <slot></slot>
+    </div>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.config.productionTip = false
+    Vue.config.devtools = true
+    Vue.component('my-component', {
+      template: '<button @click="showAttrs">查看属性</button>',
+      methods: {
+        showAttrs() {
+          console.log(this.$attrs)
+        }
+      }
+    })
+    const vm = new Vue({
+      el: '#app'
+    })
+  </script>
+</body>
+
+</html>

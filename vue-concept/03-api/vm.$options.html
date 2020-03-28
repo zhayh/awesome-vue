@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>vm.$options</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{base}}</p>
+    <p>{{noBase}}</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      customOption: '我是自定义数据',
+      data: {
+        base: '我是基础数据'
+      },
+      created() {
+        this.noBase = this.$options.customOption
+      }
+    })
+  </script>
+</body>
+
+</html>

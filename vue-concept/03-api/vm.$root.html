@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>vm.$root</title>
+</head>
+
+<body>
+  <div id="app">
+    <my-component></my-component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.component('my-component', {
+      template: '<button @click="root">查看根实例</button>',
+      methods: {
+        root() {
+          console.log(this.$root)
+          console.log(this.$root === vm.$root)
+        }
+      }
+    })
+    const vm = new Vue({
+      el: '#app'
+    })
+  </script>
+</body>
+
+</html>
