@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>axios异步交互</title>
+</head>
+
+<body>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // 基本用法
+    axios.get('http://localhost:8000/adata')
+      .then(ret => {
+        // data属性是固定的用法，用于获取后台的实际数据
+        console.log(ret.data);
+      })
+
+    // get请求参数传递
+    // axios.get('http://localhost:8000/axios?id=111')
+    //   .then(ret => {
+    //     console.log(ret.data);
+    //   })
+    // axios.get('http://localhost:8000/axios/111')
+    //   .then(ret => {
+    //     console.log(ret.data);
+    //   })
+    // axios.get('http://localhost:8000/axios', {
+    //   params: {
+    //     id: 456
+    //   }
+    // }).then(ret => {
+    //   console.log(ret.data);
+    // })
+
+    // delete请求
+    // axios.delete('http://localhost:8000/axios?id=111')
+    //   .then(ret => {
+    //     console.log(ret.data);
+    //   })
+
+    // post请求
+    // axios.post('http://localhost:8000/axios', {
+    //     name: 'niit',
+    //     pwd: 1111
+    //   })
+    //   .then(ret => {
+    //     console.log(ret.data);
+    //   })
+
+    // let params = new URLSearchParams();
+    // params.append('name', 'niit');
+    // params.append('pwd', 'computer');
+    // axios.post('http://localhost:8000/axios', params)
+    //   .then(ret => {
+    //     console.log(ret.data);
+    //   })
+
+    // put请求
+    // axios.put('http://localhost:8000/axios/111', {
+    //     name: 'niit',
+    //     pwd: '1111'
+    //   })
+    //   .then(ret => {
+    //     console.log(ret.data);
+    //   })
+
+    // let params = new URLSearchParams();
+    // params.append('name', 'niit');
+    // params.append('pwd', 'computer');
+    // axios.put('http://localhost:8000/axios/111', params)
+    //   .then(ret => {
+    //     console.log(ret.data);
+    //   })
+
+    // 响应结果
+    // axios.get('http://localhost:8000/axios-json')
+    //   .then(ret => {
+    //     console.log(ret);
+    //     console.log(ret.data.name);
+    //   });
+
+    // 全局配置
+    // 配置请求的基准URL地址及自定义token
+    // axios.defaults.baseURL = 'http://localhost:8000';
+    // axios.defaults.headers['mytoken'] = 'aqedns4ii2nglght';
+    // axios.get('axios-json')
+    //   .then(ret => {
+    //     console.log(ret);
+    //     console.log(ret.data.name);
+    //   });
+
+    // axio请求拦截器拦截器
+    // axios.interceptors.request.use(function (config) {
+    //   console.log(config);
+    //   config.headers.mytoken = 'aqedns4ii2nglght';
+    //   return config;
+    // }, function (err) {
+    //   console.log(err);
+    // })
+    // axios.get('http://localhost:8000/adata')
+    //   .then(data => {
+    //     console.log(data);
+    //   })
+
+    // axio响应拦截器拦截器
+    // axios.interceptors.response.use(function (res) {
+    //   console.log(res);
+    //   return res.data;
+    // }, function (err) {
+    //   console.log(err);
+    // })
+    // axios.get('http://localhost:8000/adata')
+    //   .then(data => {
+    //     console.log(data);
+    //   })
+  </script>
+</body>
+
+</html>

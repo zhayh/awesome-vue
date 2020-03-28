@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>axios异步交互</title>
+</head>
+
+<body>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // async/await处理异步请求
+    axios.defaults.baseURL = 'http://localhost:8000';
+    axios.get('adata').then(ret => {
+      console.log(ret.data);
+    })
+    async function queryData() {
+      let ret = await axios.get('adata');
+      return ret;
+    }
+    queryData().then(data => {
+      console.log(data);
+    })
+
+    // 多个异步任务
+    // async function queryData() {
+    //   let info = await axios.get('async1');
+    //   let ret = await axios.get('async2?info=' + info.data);
+    //   return ret.data;
+    // }
+    // queryData().then(data => {
+    //   console.log(data);
+    // })
+  </script>
+</body>
+
+</html>

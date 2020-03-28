@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Morning Routine</title>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function getTime(time, interval) {
+      let tmp = time.split(':');
+      let date = new Date();
+      date = new Date(date.getFullYear(), date.getMonth(), date.getDate(),
+        parseInt(tmp[0]), parseInt(tmp[1]), date.getSeconds());
+      date.setTime(date.getTime() + interval * 60 * 1000);
+
+      let hour = date.getHours() + '';
+      let minute = date.getMinutes() + '';
+      hour = ('00' + hour).substr(hour.length);
+      munite = ('00' + minute).substr(minute.length);
+      return hour + ":" + munite;
+    }
+
+    const shower = (time, interval) => new Promise((resolve, reject) => {
+      resolve(getTime(time, interval))
+    })
+    const eatBreak = (time, interval) => new Promise((resolve, reject) => {
+      resolve(getTime(time, interval))
+    })
+    const getDressed = (time, interval) => new Promise((resolve, reject) => {
+      resolve(getTime(time, interval))
+    })
+    const putOnMakeup = (time, interval) => new Promise((resolve, reject) => {
+      resolve(getTime(time, interval))
+    })
+    const readNews = (time, interval) => new Promise((resolve, reject) => {
+      resolve(getTime(time, interval))
+    })
+
+    const morningRoutine = async (startTime) => {
+      try {
+        const step1FinishTime = await shower(startTime, 30);
+        console.log(step1FinishTime);
+
+        const step2FinishTime = await eatBreak(step1FinishTime, 15);
+        console.log(step2FinishTime);
+
+        const step3FinishTime = await getDressed(step2FinishTime, 10);
+        console.log(step3FinishTime);
+
+        const step4FinishTime = await putOnMakeup(step3FinishTime, 15);
+        console.log(step4FinishTime);
+
+        const step5FinishTime = await readNews(step4FinishTime, 30);
+        return step5FinishTime;
+      } catch (e) {
+        return e;
+      }
+    }
+    morningRoutine("8:00").then(data => {
+      console.log(data);
+    })
+  </script>
+</body>
+
+</html>

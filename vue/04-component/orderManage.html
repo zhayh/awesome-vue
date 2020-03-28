@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>综合案例-订单管理</title>
+</head>
+
+<body>
+  <div id="app">
+    <order-component></order-component>
+  </div>
+  <template id="title">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{username}}的订单管理</h3>
+    </div>
+  </template>
+  <template id="query">
+    <div class="panel-body">
+      <label for="brand" class="col-sm-3">
+        品牌：<input type="text" id="brand" v-model="brandParam">
+      </label>
+      <button type="button" class="btn btn-primary" @click="query">查询</button>
+    </div>
+  </template>
+  <template id="items">
+    <tbdy>
+      <tr v-for="(item, index) in orders" :key="item.id">
+        <td>{{item.brand}}</td>
+        <td>{{item.orderDate | dateFormat('yyyy-MM-dd hh:mm:ss')}}</td>
+        <td>{{item.price}}</td>
+        <td>
+          <button @click="increase(index)">+</button>
+          {{item.num}}
+          <button @click="decrease(index)" :disabled="item.num <= 1">-</button>
+        </td>
+        <td><button @click="deleteOrder(index)">删除</button></td>
+        </td>
+      </tr>
+    </tbdy>
+  </template>
+  <template id="total">
+    <tfoot>
+      <tr>
+        <th>订单总额：{{totalPrice}}元</th>
+      </tr>
+    </tfoot>
+  </template>
+  <template id="add">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <legend>新增订单</legend>
+      <div class="form-group">
+        <label>品牌</label>
+        <input type="text" v-model="brand" class="form-control" placeholder="如：笔记本，手机">
+      </div>
+      <div class="form-group">
+        <label>价格</label>
+        <input type="text" v-model="price" class="form-control" placeholder="如：50">
+      </div>
+      <div class="form-group">
+        <label>数量</label>
+        <input type="text" v-model="num" class="form-control" placeholder="如：3">
+      </div>
+      <button type="submit" @click="addOrder" class="btn btn-primary">提交</button>
+    </div>
+  </template>
+  <template id="list">
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th>品牌</th>
+            <th>订单日期</th>
+            <th>订单价格</th>
+            <th>购买数量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody is="order-items"></tbody>
+        <tfoot is="order-total"></tfoot>
+      </table>
+    </div>
+  </template>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let OrderTitle = {
+      props: ['username'],
+      template: '#title'
+    }
+    let OrderQuery = {
+      template: '#query'
+    }
+    let OrderPanel = {
+      components: {
+        'order-title': OrderTitle,
+        'order-query': OrderQuery,
+      },
+      template: `
+        <div class="panel panel-primary">
+          <order-title></order-title>
+          <order-query></order-query>
+        </div>
+      `
+    }
+    let OrderItems = {
+      template: '#items'
+    }
+
+    let OrderTotal = {
+      template: '#total'
+    }
+    let OrderList = {
+
+      components: {
+        'order-items': OrderItems,
+        'order-total': OrderTotal
+      },
+      template: '#list',
+      methods: {
+        add: function (val) {
+
+        }
+      }
+    }
+
+    let OrderAdd = {
+      data: {
+        id: 0, // 订单id
+        brand: '', // 订单品牌
+        price: 0, // 订单价格
+        num: 0, //订单数量
+        orders: [], // 订单集合
+        
+      },
+      template: '#add'
+    }
+    Vue.component('OrderComponent', {
+      data: function () {
+        return {
+          username: '王艳',
+          orders: [],
+
+        }
+      },
+      components: {
+        'order-panel': OrderPanel,
+        'order-list': OrderList,
+        'order-add': OrderAdd
+      },
+      template: `
+        <div>
+          <order-panel></order-panel>
+          <order-list></order-list>
+          <order-add></order-add>
+        </div>
+      `
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        id: 0, // 订单id
+        brand: '', // 订单品牌
+        price: 0, // 订单价格
+        num: 0, //订单数量
+        orders: [], // 订单集合
+        brandParam: '', // 查询参数：品牌
+      },
+      methods: {
+        addOrder() {
+          this.orders.push({
+            id: this.id++,
+            brand: this.brand,
+            orderDate: new Date(),
+            price: this.price,
+            num: this.num
+          })
+          this.brand = ''
+          this.price = ''
+          this.num = ''
+        },
+        increase(index) {
+          this.orders[index].num++
+        },
+        decrease(index) {
+          this.orders[index].num--
+        },
+        deleteOrder(index) {
+          this.orders.splice(index, 1)
+        },
+        query() {
+          let _this = this
+          this.orders = this.orders.filter(function (item) {
+            return item.brand.includes(_this.brandParam)
+          })
+        }
+      },
+      computed: {
+        totalPrice: function () {
+          return this.orders.reduce((value, item) => {
+            return value + item.price * item.num
+          }, 0)
+        }
+      }
+    })
+    Vue.filter("dateFormat", function (value, format) {
+      let date = {
+        "M+": value.getMonth() + 1,
+        "d+": value.getDate(),
+        "h+": value.getHours(),
+        "m+": value.getMinutes(),
+        "s+": value.getSeconds(),
+      }
+      if (/(y+)/.test(format)) {
+        format = format.replace(RegExp.$1, (value.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (let k in date) {
+          if (new RegExp(`(${k})`).test(format)) {
+            format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ?
+              (date[k]) : (("00" + date[k]).substr(("" + date[k]).length)))
+          }
+        }
+        return format;
+      }
+    })
+    Vue.filter("yyyyMMdd", function (date) {
+      let dt = new Date(date);
+      let y = dt.getFullYear();
+      let m = (dt.getMonth() + 1).toString().padStart(2, '0');
+      let d = dt.getDate().toString().padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    })
+  </script>
+</body>
+
+</html>

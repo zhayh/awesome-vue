@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>异步接口调用-fetch</title>
+</head>
+
+<body>
+
+  <script>
+    /**
+     * Fetch API应用
+     */
+    fetch("http://localhost:8000/fdata")
+      .then(function (data) {
+        // text()属于fetchAPI的一部分，返回一个Promise实例对象
+        return data.text();
+      }).then(function (data) {
+        // 这里得到的才是最终的数据
+        console.log(data);
+      })
+
+    // GET参数传递-传统URL
+    // fetch('http://localhost:8000/books?id=123').then(data => {
+    //   return data.text();
+    // }).then(function (data) {
+    //   console.log(data);
+    // })
+
+    // GET参数传递-restful形式的URL
+    // fetch('http://localhost:8000/books/123', {
+    //   method: 'get'
+    // }).then(data => {
+    //   return data.text();
+    // }).then(function (data) {
+    //   console.log(data);
+    // })
+
+    // delete请求
+    // fetch('http://localhost:8000/books/789', {
+    //   method: 'delete'
+    // }).then(data => {
+    //   return data.text();
+    // }).then(function (data) {
+    //   console.log(data);
+    // })
+
+    // post请求 - form数据
+    // fetch('http://localhost:8000/books', {
+    //   method: 'post',
+    //   body: 'name=niit&pwd=123',
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   }
+    // }).then(data => {
+    //   return data.text();
+    // }).then(function (data) {
+    //   console.log(data);
+    // })
+
+    // post请求 - json参数
+    // fetch('http://localhost:8000/books', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     name: 'niit',
+    //     pwd: '123',
+    //   }),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // }).then(data => {
+    //   return data.text();
+    // }).then(function (data) {
+    //   console.log(data);
+    // })
+
+    // put请求
+    // fetch('http://localhost:8000/books/123', {
+    //   method: 'put',
+    //   body: JSON.stringify({
+    //     name: 'niit',
+    //     pwd: 123456,
+    //   }),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // }).then(data => {
+    //   return data.text();
+    // }).then(function (data) {
+    //   console.log(data);
+    // })
+
+    // 获取json格式响应数据
+    // fetch('http://localhost:8000/json')
+    // .then(data => data.json())
+    // .then(data => {
+    //   console.log(data);
+    //   console.log(typeof data);
+    //   console.log(data.name);
+    // })
+  </script>
+</body>
+
+</html>

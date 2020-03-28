@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+  <title>Promise异步交互</title>
+</head>
+
+<body>
+
+  <script>
+    /**
+     * 异步调用
+     */
+    console.log(typeof Promise);
+    var promise = new Promise(function (resolve, reject) {
+      // 实现异步任务
+      setTimeout(function () {
+        let flag = true;
+        if (flag) {
+          // 正常情况
+          resolve('hello');
+        } else {
+          //异常情况
+          reject('出错了');
+        }
+      }, 1000);
+    });
+    promise.then(function (data) {
+      console.log(data);
+    }, function (info) {
+      console.log(info);
+    })
+    
+    /**
+     * 处理Ajax请求
+     */
+    // function queryData(url) {
+    //   return new Promise(function (resolve, reject) {
+    //     $.ajax({
+    //       url: url,
+    //       success: function (data) {
+    //         resolve(data)
+    //       },
+    //       error: function () {
+    //         reject("服务器错误")
+    //       }
+    //     });
+    //   });
+    // }
+    // queryData("http://localhost:8000/data").then(function (data) {
+    //   console.log(data);
+    //   // 想要继续链式编程下去, 使用return
+    //   return queryData('http://localhost:8000/data1');
+    // }).then(function (data) {
+    //   console.log(data);
+    //   return queryData('http://localhost:8000/data2')
+    // }).then(function (data) {
+    //   console.log(data);
+    //   return 111; // 会自动产生一个新的Promise对象传递值给下一个then
+    // }).then(function (data) {
+    //   console.log(data);
+    // })
+    /**
+     * 实例方法
+     */
+    // 
+    /**
+     * 类方法：all()和race()
+     */
+    // function queryData(url) {
+    //   return new Promise(function (resolve, reject) {
+    //     $.ajax({
+    //       url: url,
+    //       success: function (data) {
+    //         resolve(data)
+    //       },
+    //       error: function () {
+    //         reject("服务器错误")
+    //       }
+    //     });
+    //   });
+    // }
+    // let p1 = queryData("http://localhost:8000/a1")
+    // let p2 = queryData("http://localhost:8000/a2")
+    // let p3 = queryData("http://localhost:8000/a3")
+    // Promise.all([p1, p2, p3]).then((result) => {
+    //   console.log(result);
+    // })
+    // Promise.race([p1, p2, p3]).then(result => {
+    //   console.log(result);
+    // })
+  </script>
+</body>
+
+</html>
