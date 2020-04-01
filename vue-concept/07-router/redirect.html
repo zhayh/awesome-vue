@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>路由重定向</title>
+</head>
+
+<body>
+  <div id="app">
+    <router-link to="/login">登录</router-link>
+    <router-link to="/register">注册</router-link>
+    <!-- 路由占位符 -->
+    <!-- 通过路由规则匹配到的组件，然后被渲染到router-view所在的位置 -->
+    <router-view></router-view>
+  </div>
+  <!--1. 导入相关库文件-->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+  <script>
+    // 定义路由组件
+    const Login = {
+      template: '<h1>Login组件</h1>'
+    }
+    const Register = {
+      template: '<h1>Register组件</h1>'
+    }
+    const router = new VueRouter({
+      // 定义路由规则数组
+      routes: [
+        // 重定向的path是原地址，redirect是将要被重定向到的新地址
+        { path: '/', redirect: '/login' },
+        { path: '/login', component: Login },
+        { path: '/register', component: Register },
+      ]
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {},
+      // 挂载路由实例对象
+      router
+    })
+  </script>
+</body>
+
+</html>

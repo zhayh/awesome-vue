@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>实现简易的路由功能</title>
+</head>
+
+<body>
+  <div id="app">
+    <a href="#/index">主页</a>
+    <a href="#/science">科技</a>
+    <a href="#/economic">财经</a>
+    <a href="#/sport">体育</a>
+
+    <!--根据：:is属性指定组件名称
+      把对应的组件渲染到component标签所在的位置-->
+    <!-- 可以把component标签当作【组件占位符】-->
+    <component :is='name'></component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const index = {
+      template: '<h1>主页信息</h1>'
+    }
+    const science = {
+      template: '<h1>科技信息</h1>'
+    }
+    const economic = {
+      template: '<h1>经济信息</h1>'
+    }
+    const sport = {
+      template: '<h1>体育信息</h1>'
+    }
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        name: 'index'
+      },
+      components: {
+        index,
+        science,
+        economic,
+        sport
+      }
+    })
+    // 监听window的onhashchange事件，
+    // 根据获取到的最新的hash值，切换要显示的组件的名称
+    window.onhashchange = function () {
+      console.log(location.hash);
+      switch (location.hash.slice(1)) {
+        case '/index':
+          vm.name = 'index';
+          break;
+        case '/science':
+          vm.name = 'science'
+          break;
+        case '/economic':
+          vm.name = 'economic'
+          break;
+        case '/sport':
+          vm.name = 'sport'
+          break;
+      }
+    }
+  </script>
+</body>
+
+</html>

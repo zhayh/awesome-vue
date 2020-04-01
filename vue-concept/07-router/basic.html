@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>基本路由</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- router-link: vue提供的标签，默认会被渲染为a标签 -->
+    <!-- to属性: 默认会被渲染为href属性 -->
+    <!-- to属性值: 默认会被渲染为#开头的hash地址 -->
+    <router-link to="/login">登录</router-link>
+    <router-link to="/register">注册</router-link>
+    <!-- 路由占位符 -->
+    <!-- 通过路由规则匹配到的组件，然后被渲染到router-view所在的位置 -->
+    <router-view></router-view>
+  </div>
+  <!--1. 导入相关库文件-->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+  <script>
+    // 定义路由组件
+    const Login = {
+      template: '<h1>Login 组件</h>'
+    }
+    const Register = {
+      template: '<h1>Register 组件</h1>'
+    }
+    const router = new VueRouter({
+      // 定义路由规则数组
+      routes: [
+        // 每个路由规则是一个配置对象，至少包含path和component属性：
+        // path表示当前路由规则匹配的hash地址
+        // component表示当前路由规则对应要展示的组件
+        { path: '/login', component: Login },
+        { path: '/register', component: Register },
+      ]
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {},
+      // 挂载路由实例对象
+      router
+    })
+  </script>
+</body>
+
+</html>

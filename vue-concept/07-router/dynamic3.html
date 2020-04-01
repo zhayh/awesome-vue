@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>动态路由 - 对象类型</title>
+</head>
+
+<body>
+  <div id="app">
+    <!--有如下 3 个路由链接 -->
+    <router-link to="/user/1">User1</router-link>
+    <router-link to="/user/2">User2</router-link>
+    <router-link to="/user/3">User3</router-link>
+    <router-link to="/register">Register</router-link>
+
+    <router-view></router-view>
+  </div>
+
+  <!--1. 导入相关库文件-->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script>
+    const User = {
+      props: ['id', 'name', 'age'],  // 使用props接收路由参数
+      template: '<h1>User 组件 -- 用户{{id}}信息为: {{name + ", " + age}}</h1>' // 使用路由参数
+    }
+    const Register = {
+      template: '<h1>Register 组件</h1>'
+    }
+    const router = new VueRouter({
+      routes: [
+         { path: '/', redirect: '/user'},
+         // 如果 props是对象，就会被按原样设置为组件属性
+         { path: '/user/:id', component: User, props: {name: '张三', age: 20} },
+         { path: '/register', component: Register }
+      ]
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {},
+      // 挂载路由实例对象
+      router
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"   />
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+  <meta name="viewport"  content="width=device-width,initial-scale=1">
+  <title>子路由</title>
+</head>
+
+<body>
+  <div id="app">
+    <router-link to="/login">登录</router-link>
+    <router-link to="/register">注册</router-link>
+
+    <router-view></router-view>
+  </div>
+  <!--1. 导入相关库文件-->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+  <script>
+    // 定义路由组件
+    const Login = {
+      template: '<h1>Login 组件</h1>'
+    }
+    const Register = {
+      template: `
+        <div>
+          <h1>Register 组件</h1>
+          <hr />
+
+          <!-- 子路由链接 -->
+          <router-link to="/register/tab1">tab1</router-link>
+          <router-link to="/register/tab2">tab2</router-link>
+
+          <!-- 子路由的占位符 -->
+          <router-view />
+        <div>
+      `
+    }
+    const Tab1 = {
+      template: '<h3>tab1 子组件</h3>'
+    }
+
+    const Tab2 = {
+      template: '<h3>tab2 子组件</h3>'
+    }
+    const router = new VueRouter({
+      // 定义路由规则数组
+      routes: [
+        { path: '/', redirect: '/login' },
+        { path: '/login', component: Login },
+        // children 数组表示子路由规则
+        { path: '/register', component: Register, children: [
+            { path: '/register/tab1', component: Tab1 },
+            { path: '/register/tab2', component: Tab2 },
+          ]
+        },
+      ]
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {},
+      // 挂载路由实例对象
+      router
+    })
+  </script>
+</body>
+
+</html>
